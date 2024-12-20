@@ -1,44 +1,17 @@
-﻿@* @{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div> *@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
 
-    <!--- basic page needs
+  @*   <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
     <title>IT Chronicles</title>
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content=""> *@
 
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/vendor.css">
-
-    <!-- script
-    ================================================== -->
-    <script src="~/js/modernizr.js"></script>
-    <script defer src="~/js/fontawesome/all.min.js"></script>
-
-    <!-- favicons
-    ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-
 </head>
 
 <body id="top">
@@ -66,15 +39,16 @@
         </div>
 
         <div class="s-header__content">
-    
+
             <nav class="s-header__nav-wrap">
-                <ul class="s-header__nav">
-                    <li><a class="smoothscroll" href="#hero" title="Intro">Home</a></li>
-                    <li><a class="smoothscroll" href="#about" title="About">About</a></li>
-                    <li><a class="smoothscroll" href="#services" title="Services">Services</a></li>
-                    <li><a class="smoothscroll" href="#portfolio" title="Works">Works</a></li>
-                </ul>
-            </nav> <!-- end s-header__nav-wrap -->
+             <ul class="s-header__nav"> 
+                 <li><a class="smoothscroll" href="#hero" title="Intro">Home</a></li> 
+                 <li><a asp-area="" asp-controller="AdminTag" asp-action="Add" title="Admin">Add Tag</a></li>
+                 <li><a class="smoothscroll" href="#about" title="About">About</a></li>
+                 <li><a class="smoothscroll" href="#services" title="Services">Services</a></li>
+                 <li><a class="smoothscroll" href="#portfolio" title="Works">Works</a></li> 
+             </ul> </nav> <!-- end s-header__nav-wrap -->
+    
 
             <a href="mailto:#0" class="btn btn--primary btn--small">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
@@ -657,14 +631,6 @@
         </div>
 
     </div> <!-- end photoSwipe background -->
-
-
-    <!-- Java Script
-    ================================================== -->
-    <script src="~/js/jquery-3.2.1.min.js"></script>
-    <script src="~/js/plugins.js"></script>
-    <script src="~/js/main.js"></script>
-
 </body>
 
 </html>

@@ -1,0 +1,52 @@
+﻿@model IT_Chronicles.Models.ViewModels.EditTagRequest
+@{
+}
+
+<body>
+    <div class="py-2">
+        <div class="container">
+            <h3>Edit Tags - Admin Functionality</h3>
+        </div>
+    </div>
+
+    @if(Model != null)
+    {
+        <div class="container py-5">
+            <form method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Id</label>
+                    <input type="text" class="form-control text-success" id="id" asp-for="Id" readonly />
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control text-success" id="name" asp-for="Name" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Display Name</label>
+                    <input type="text" class="form-control text-success" id="displayname" asp-for="DisplayName" />
+                </div>
+
+                <div class="mb-3">
+
+                    <div class="d-flex">
+                        <button type="submit">Update</button>
+                        <button type="submit" class="ms-2">
+                            <a asp-area="" asp-controller="AdminTag" asp-action="Delete">Delete</a>
+                        </button>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    }
+
+    else
+    {
+        <p>No tags found !</p>
+    }
+</body>

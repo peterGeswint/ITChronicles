@@ -1,0 +1,33 @@
+﻿@model IT_Chronicles.Models.ViewModels.AddTagRequest
+
+
+
+<body class="container">
+    <div class="py-2">
+        <div class="container">
+            <h1>Add New Tag - Admin Functionality</h1>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control text-success" id="name" asp-for="Name" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Display Name</label>
+                <input type="text" class="form-control text-success" id="displayname" asp-for="DisplayName" />
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex">
+                    <button type="submit">Save</button>
+                    <a asp-area="" asp-controller="AdminTag" asp-action="List" class="btn ms-3">Go To List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+

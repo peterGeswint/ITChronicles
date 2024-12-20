@@ -1,0 +1,78 @@
+﻿@model List<IT_Chronicles.Models.Domain.Tag>
+
+@{
+}
+
+<!DOCTYPE html>
+<head>
+    <style>
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* Table Header Styles */
+        thead {
+            text-align: center;
+            padding: 10px;
+        }
+
+        }
+
+        /* Table Cell Styles */
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+
+<body class="py-3">
+    <div class="py-2">
+        <div class="container">
+            <h3>List of All Tags - Admin Functionality</h3>
+        </div>
+    </div>
+
+    <div class="container py-3">
+        @if (Model != null && Model.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Display Name</th>
+                        <th>Actions</th>
+                    </tr>
+                   
+                </thead>
+                <tbody>
+                    @foreach (var tag in Model)
+                    {
+                        <tr>
+                            <td>@tag.Id</td>
+                            <td>@tag.Name</td>
+                            <td>@tag.DisplayName</td>
+                            <td>
+                                <a asp-area="" asp-controller="AdminTag"
+                                   asp-action="Edit"
+                                   asp-route-id="@tag.Id">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p> No tags Found ! </p>
+        }
+
+    </div>
+
+</body>
+</html>
+
