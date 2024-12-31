@@ -1,6 +1,7 @@
 ﻿using IT_Chronicles.Data;
 using IT_Chronicles.Models.Domain;
 using IT_Chronicles.Models.ViewModels;
+using IT_Chronicles.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,11 +9,11 @@ namespace IT_Chronicles.Controllers
 {
     public class AdminTagController : Controller
     {
-        private readonly ITChroniclesDbContext _context;
+        private readonly ITagRepository tagRepository;
 
-        public AdminTagController(ITChroniclesDbContext iTChroniclesDbContext)
+        public AdminTagController(ITagRepository tagRepository)
         {
-            _context = iTChroniclesDbContext;
+            this.tagRepository = tagRepository;
         }
 
 
@@ -29,12 +30,9 @@ namespace IT_Chronicles.Controllers
             {
                 Name = addTagRequest.Name,
                 DisplayName = addTagRequest.DisplayName
-
             };
 
-            await _context.Tags.AddAsync(tag);
-           await _context.SaveChangesAsync();
-
+             await tagRepository.AddAsync(tag);
 
             return RedirectToAction("List");
         }
@@ -44,16 +42,14 @@ namespace IT_Chronicles.Controllers
         public async Task<IActionResult> List()
         {
             //Tag listed to diplay the data in the database
-            var tags = await _context.Tags.ToListAsync();
+            var tags = await tagRepository.GetAllAsync();
             return View(tags);
         }
 
         [HttpGet]
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-
-           var tag = _context.Tags.FirstOrDefault(x => x.Id == id);
-
+            var tag = await tagRepository.GetAsync(id);
             if (tag != null) 
             {
                 var editTagRequest = new EditTagRequest
@@ -65,7 +61,7 @@ namespace IT_Chronicles.Controllers
                 };
                 return View(editTagRequest);
             }
-            return View();
+            return View(null);
         }
 
         [HttpPost]
@@ -79,16 +75,16 @@ namespace IT_Chronicles.Controllers
                 DisplayName = editTagRequest.DisplayName
             };
 
-            var existingTag =  await _context.Tags.FindAsync(tag.Id);
 
-            if(existingTag != null)
+            var updatedTag = await tagRepository.UpdateAsync(tag);
+
+            if(updatedTag != null)
             {
-                existingTag.Name = tag.Name;
-                existingTag.DisplayName = tag.DisplayName;
-
-               await _context.SaveChangesAsync();
-                 
-                return RedirectToAction("Edit", new {id = editTagRequest.Id});
+                //success
+            }
+            else
+            {
+                //error
             }
 
             return RedirectToAction("Edit", new { id = editTagRequest.Id });
@@ -97,13 +93,13 @@ namespace IT_Chronicles.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
         {
-           var tag = await _context.Tags.FindAsync(editTagRequest.Id);
-            if(tag != null)
+           var deletedTag = await tagRepository.DeleteAsync(editTagRequest.Id);
+            if(deletedTag != null)
             {
-                _context.Tags.Remove(tag);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("List");
+                //success
+               return RedirectToAction("List");
             }
+            //error
             return RedirectToAction("Edit", new {id = editTagRequest.Id});
         }
     }

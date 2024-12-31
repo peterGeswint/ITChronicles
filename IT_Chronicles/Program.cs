@@ -1,4 +1,5 @@
 using IT_Chronicles.Data;
+using IT_Chronicles.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ITChroniclesDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ITChroniclesConnectionString")));
+
+//Tag Repository
+builder.Services.AddScoped<ITagRepository,TagRepository>();
+
+//BlogPost repository
+builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+
+//Cloudinary repository
+builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();
 
 var app = builder.Build();
 

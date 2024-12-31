@@ -1,0 +1,95 @@
+﻿@model IT_Chronicles.Models.ViewModels.EditBlogPostRequest
+
+@{
+}
+<body class="container mb-2">
+    <div class="py-2">
+        <div class="container">
+            <h1>Edit Blog Post - Admin Functionality</h1>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        @if (Model != null)
+        {
+
+            <form method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Id</label>
+                    <input class="form-control text-success" type="text" id="id" asp-for="Id" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Heading</label>
+                    <input class="form-control text-success" type="text" id="heading" asp-for="Heading" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Page Title</label>
+                    <input class="form-control text-success" type="text" id="pageTitle" asp-for="PageTitle" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Content</label>
+                    <textarea class="form-control text-success bg-dark" id="content" asp-for="Content"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Short Description</label>
+                    <input class="form-control text-success" type="text" id="shortDescription" asp-for="ShortDescription" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Featured Image Url</label>
+                    <input class="form-control text-success" type="text" id="featuredImageUrl" asp-for="FeaturedImageUrl" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Url Handle</label>
+                    <input class="form-control text-success" type="text" id="urlHandle" asp-for="UrlHandle" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Published Date</label>
+                    <input class="form-control text-success" type="date" id="publishedDate" asp-for="PublishedDate" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Author</label>
+                    <input class="form-control text-success" type="text" id="author" asp-for="Author" />
+                </div>
+
+                <div class=" form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="visible" asp-for="Visible" />
+                    <label class="form-check-label text-success"> Is Visible</label>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tags</label>
+                    <select class="form-select text-success" asp-items="@Model.Tags" asp-for="SelectedTags">
+                    </select>
+                </div>
+
+                <div class="mb-3 d-flex">
+                    <button type="submit">Save</button>
+                    <a asp-area="" asp-controller="AdminTag" asp-action="List" class="ms-3 mb-2 btn">Go To List</a>
+                </div>
+            </form>
+
+
+        }
+        else
+        {
+            <p>No blog found</p>
+        }
+
+    </div>
+
+    @section Scripts {
+        <script>
+            var editor = new FroalaEditor('#content');
+        </script>
+    }
+
+</body>

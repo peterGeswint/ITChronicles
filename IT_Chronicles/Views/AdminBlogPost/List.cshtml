@@ -1,0 +1,45 @@
+﻿@model List<IT_Chronicles.Models.Domain.BlogPost>
+@{
+}
+
+<body class="container py-2">
+    <div class="py-2">
+        <div class="container">
+            <h1>List all Blog Post - Admin Functionality</h1>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Heading</th>
+                    <th>Tags</th>
+                    <td>Actions </td>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @foreach (var blogPost in Model)
+                {
+                    <tr>
+                        <td>@blogPost.Id</td>
+                        <td>@blogPost.Heading</td>
+                        <td>
+                            <div class="d-flex">
+                                @foreach (var tag in blogPost.Tags)
+                                {
+                                    <span class="badge bg-secondary me-1">@tag.Name</span>
+                                }
+                            </div>
+                        </td>
+                        <td><a asp-area="" asp-controller="AdminBlogPost" asp-action="Edit" asp-rout-id="@blogPost.Id">Edit</a></td>
+                        <td><a asp-area="" asp-controller="AdminBlogpost" asp-action="Delete" class="me-2"> Delete</a></td>
+                   </tr>
+                   }
+            </tbody>
+        </table>
+    </div>
+</body>

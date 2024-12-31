@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] IT_Chronicles</title>
+    <title>@ViewData["Title"] IT Chronicles</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/IT_Chronicles.styles.css" asp-append-version="true" />
@@ -24,6 +24,8 @@
     ================================================== -->
     <link rel="stylesheet" href="~/css/styles.css">
     <link rel="stylesheet" href="~/css/vendor.css">
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@4.0.10/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@4.0.10/js/froala_editor.pkgd.min.js'></script>
 </head>
 <body>
   @*   <header>
@@ -46,23 +48,20 @@
                 </div>
             </div>
         </nav>
-    </header> *@
+    </header>
+    *@
     <div class="container">
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+
     </div>
 
-   @*  <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - IT_Chronicles - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <!-- Java Script
-    ================================================== -->
+  
     <script src="~/js/jquery-3.2.1.min.js"></script>
     <script src="~/js/plugins.js"></script>
     <script src="~/js/main.js"></script>
