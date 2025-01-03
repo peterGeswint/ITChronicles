@@ -5,7 +5,7 @@ namespace IT_Chronicles.Data
 {
     public class ITChroniclesDbContext : DbContext
     {
-        public ITChroniclesDbContext(DbContextOptions options) : base(options)
+        public ITChroniclesDbContext(DbContextOptions<ITChroniclesDbContext> options) : base(options)
         {
         }
 
