@@ -65,7 +65,7 @@ namespace IT_Chronicles.Controllers
             }
 
             await blogPostRepository.AddAsync(blogPost);
-            return RedirectToAction("Add");
+            return RedirectToAction("List");
         }
 
         [HttpGet]
