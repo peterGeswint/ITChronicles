@@ -6,5 +6,6 @@ namespace IT_Chronicles.Repositories
     {
         Task<int> GetTotalLikes(Guid blogPostId);
         Task<BlogPostLike> AddLike(BlogPostLike blogPostLike);
+        Task<IEnumerable<BlogPostLike>> GetLikesForBlog(Guid blogPostId);
     }
 }
