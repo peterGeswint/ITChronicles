@@ -1,4 +1,7 @@
 ﻿@model IT_Chronicles.Models.ViewModels.HomeViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -44,12 +47,30 @@
             <nav class="s-header__nav-wrap">
              <ul class="s-header__nav"> 
                  <li><a class="smoothscroll" href="#hero" title="Intro">Home</a></li> 
-                 <li><a asp-area="" asp-controller="AdminTag" asp-action="Add" title="Admin">Add Tag</a></li>
-                 <li><a asp-area="" asp-controller="AdminBlogPost" asp-action="Add" title="Admin">Add BlogPost</a></li>
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                         <li><a asp-area="" asp-controller="AdminTag" asp-action="Add" title="Admin">Add Tag</a></li>
+                         <li><a asp-area="" asp-controller="AdminBlogPost" asp-action="Add" title="Admin">Add BlogPost</a></li>  
+                    }
+                 
                  <li><a class="smoothscroll" href="#about" title="About">About</a></li>
                  <li><a class="smoothscroll" href="#services" title="Services">Services</a></li>
                  <li><a class="smoothscroll" href="#portfolio" title="Works">Works</a></li>
-                 <li><a class="me-3" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    @if (signInManager.IsSignedIn(User))
+                    {
+
+                         <li class="me-4 text-light">@User.Identity?.Name</li> 
+                      
+                         <li><a class="me-4" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+
+                    }
+                    else
+                    {
+                          <li><a class="me-4" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+
+                          <li><a class="me-4 " asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    }
+
                  
              </ul>
             
@@ -57,12 +78,6 @@
              
          </nav> <!-- end s-header__nav-wrap -->
     
-
-           @*  <a href="mailto:#0" class="btn btn--primary btn--small">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
-                Get In Touch
-            </a>
- *@
         </div> <!-- end header-content -->
 
         <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>

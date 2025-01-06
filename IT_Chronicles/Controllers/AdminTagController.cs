@@ -2,11 +2,13 @@
 using IT_Chronicles.Models.Domain;
 using IT_Chronicles.Models.ViewModels;
 using IT_Chronicles.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace IT_Chronicles.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminTagController : Controller
     {
         private readonly ITagRepository tagRepository;

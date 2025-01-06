@@ -1,6 +1,8 @@
-﻿namespace IT_Chronicles.Models.Domain
+﻿using IT_Chronicles.Models.Domain;
+
+namespace IT_Chronicles.Models.ViewModels
 {
-    public class BlogPost
+    public class BlogDetailsViewModel
     {
         public Guid Id { get; set; }
 
@@ -24,6 +26,6 @@
 
         public ICollection<Tag> Tags { get; set; }
 
-        public ICollection<BlogPostLike> Likes { get; set; }
+        public int TotalLikes { get; set; }
     }
 }

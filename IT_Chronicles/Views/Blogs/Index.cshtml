@@ -1,4 +1,7 @@
-@model IT_Chronicles.Models.Domain.BlogPost
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+@inject UserManager<IdentityUser> userManager
+@model IT_Chronicles.Models.ViewModels.BlogDetailsViewModel
 
 @{
 	ViewData["Title"] = Model.PageTitle;
@@ -18,9 +21,26 @@
 				
 			 </div>
 
+				<div class="mb-3">
+
+					@if (signInManager.IsSignedIn(User))
+					{
+						<a id="buttonLike" style="cursor: pointer;">
+							<i class="bi bi-hand-thumbs-up"></i>
+						</a>
+					}
+
+					<span>@Model.TotalLikes</span>
+					likes
+
+			   
+
+			 </div>
+
 			 <div class="mb-3 d-flex">
 				@foreach(var tag in Model.Tags)
 				{
+
 					<span class="badge bg-secondary me-1">@tag.Name</span>
 
 				}
@@ -40,3 +60,26 @@
 		</div>
 	</div>
 </div>
+@section Scripts {
+	<script>
+		const btnLikeElement = document.getElementById('buttonLike');
+
+		async function addLikeForBlog() {
+			fetch('/api/BlogPostLike/Add', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': '*/*'
+				},
+				body: JSON.stringify({
+					blogPostId: '@Model.Id',
+					UserId: '@userManager.GetUserId(User)'
+				})
+			}).then(console.log('Request finished'));
+		}
+
+
+		btnLikeElement.addEventListener('click', addLikeForBlog);
+	</script>
+
+}

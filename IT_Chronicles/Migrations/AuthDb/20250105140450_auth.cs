@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace IT_Chronicles.Migrations.AuthDb
 {
     /// <inheritdoc />
-    public partial class addauthdb : Migration
+    public partial class auth : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -159,7 +159,7 @@ namespace IT_Chronicles.Migrations.AuthDb
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "38272fd9-900a-4c5e-951c-1755cd7a7fca", 0, "ca07fa8a-51ac-4cda-8f8e-781533cb2338", "superadminuser@itchronicles.com", false, false, null, "SUPERADMINUSER@ITCHRONICLES.COM", "SUPERADMINUSER@ITCHRONICLES.COM", "AQAAAAIAAYagAAAAEI4fCvBOxFZGmbKq4CKkGlPq80CfDEx3TgDx2ej81uTzkeOESIFIUcujisq5+wk+gg==", null, false, "2344e897-553d-4b94-9221-1e81ce8a8ca5", false, "superadminuser@itchronicles.com" });
+                values: new object[] { "38272fd9-900a-4c5e-951c-1755cd7a7fca", 0, "1a91faaf-aa4e-430c-9990-3cd0e95caaf0", "superadminuser@itchronicles.com", false, false, null, "SUPERADMINUSER@ITCHRONICLES.COM", "SUPERADMINUSER@ITCHRONICLES.COM", "AQAAAAIAAYagAAAAEIFYJHirNYvUNUDR+TO+LlQRz2p+FD+KrwODvfiF2FZJ7UoycMEc6XOvxb5FhYos6g==", null, false, "553b9d68-51cc-4aeb-8152-fff6ad06d74c", false, "superadminuser@itchronicles.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

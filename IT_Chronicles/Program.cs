@@ -16,7 +16,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    options.Password.RequireDigit = false;
+    options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
     options.Password.RequireNonAlphanumeric = true;
@@ -33,6 +33,8 @@ builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
 //Cloudinary repository
 builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();
+
+builder.Services.AddScoped<IBlogPostLikeRepository, BlogPostLikeRepository>();
 
 var app = builder.Build();
 

@@ -4,6 +4,7 @@ using IT_Chronicles.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IT_Chronicles.Migrations.AuthDb
 {
     [DbContext(typeof(AuthDbContext))]
-    partial class AuthDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250105140450_auth")]
+    partial class auth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,29 +50,6 @@ namespace IT_Chronicles.Migrations.AuthDb
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "08356c8b-fe2a-4d0d-b385-b76579f2ae20",
-                            ConcurrencyStamp = "08356c8b-fe2a-4d0d-b385-b76579f2ae20",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "83a26f2d-4b69-45e1-9b9c-4fb57ae4f67a",
-                            ConcurrencyStamp = "83a26f2d-4b69-45e1-9b9c-4fb57ae4f67a",
-                            Name = "SuperAdmin",
-                            NormalizedName = "SUPERADMIN"
-                        },
-                        new
-                        {
-                            Id = "f376f12e-f050-4966-acfa-c0042727714e",
-                            ConcurrencyStamp = "f376f12e-f050-4966-acfa-c0042727714e",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -166,15 +146,15 @@ namespace IT_Chronicles.Migrations.AuthDb
                         {
                             Id = "38272fd9-900a-4c5e-951c-1755cd7a7fca",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "51ab49f7-2b86-42c1-a9b2-7b9373d9ca58",
+                            ConcurrencyStamp = "1a91faaf-aa4e-430c-9990-3cd0e95caaf0",
                             Email = "superadminuser@itchronicles.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMINUSER@ITCHRONICLES.COM",
                             NormalizedUserName = "SUPERADMINUSER@ITCHRONICLES.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP1T6iSCVxQ2cCQskp90fSr4KKr6miiiv22isvgwUzinOpmlEf4uQtQCjlAW05odyg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIFYJHirNYvUNUDR+TO+LlQRz2p+FD+KrwODvfiF2FZJ7UoycMEc6XOvxb5FhYos6g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7d3632c1-0a70-4b50-b182-b2af2cb2abde",
+                            SecurityStamp = "553b9d68-51cc-4aeb-8152-fff6ad06d74c",
                             TwoFactorEnabled = false,
                             UserName = "superadminuser@itchronicles.com"
                         });
@@ -240,23 +220,6 @@ namespace IT_Chronicles.Migrations.AuthDb
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "38272fd9-900a-4c5e-951c-1755cd7a7fca",
-                            RoleId = "83a26f2d-4b69-45e1-9b9c-4fb57ae4f67a"
-                        },
-                        new
-                        {
-                            UserId = "38272fd9-900a-4c5e-951c-1755cd7a7fca",
-                            RoleId = "08356c8b-fe2a-4d0d-b385-b76579f2ae20"
-                        },
-                        new
-                        {
-                            UserId = "38272fd9-900a-4c5e-951c-1755cd7a7fca",
-                            RoleId = "f376f12e-f050-4966-acfa-c0042727714e"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

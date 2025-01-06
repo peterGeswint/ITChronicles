@@ -1,11 +1,13 @@
 ﻿using IT_Chronicles.Models.Domain;
 using IT_Chronicles.Models.ViewModels;
 using IT_Chronicles.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace IT_Chronicles.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminBlogPostController : Controller
     {
         private readonly ITagRepository tagRepository;

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IT_Chronicles.Migrations
 {
     [DbContext(typeof(ITChroniclesDbContext))]
-    [Migration("20241214204119_init")]
-    partial class init
+    [Migration("20250105152033_Like functionality")]
+    partial class Likefunctionality
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,25 @@ namespace IT_Chronicles.Migrations
                     b.ToTable("BlogPosts");
                 });
 
+            modelBuilder.Entity("IT_Chronicles.Models.Domain.BlogPostLike", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BlogPostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogPostId");
+
+                    b.ToTable("blogPostLike");
+                });
+
             modelBuilder.Entity("IT_Chronicles.Models.Domain.Tag", b =>
                 {
                     b.Property<Guid>("Id")
@@ -117,6 +136,20 @@ namespace IT_Chronicles.Migrations
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("IT_Chronicles.Models.Domain.BlogPostLike", b =>
+                {
+                    b.HasOne("IT_Chronicles.Models.Domain.BlogPost", null)
+                        .WithMany("Likes")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("IT_Chronicles.Models.Domain.BlogPost", b =>
+                {
+                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }
