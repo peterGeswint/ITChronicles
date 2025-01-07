@@ -14,5 +14,7 @@ namespace IT_Chronicles.Data
         public DbSet<Tag> Tags { get; set; }
 
         public DbSet<BlogPostLike> blogPostLike { get; set; }
+
+        public DbSet<BlogPostComment> blogPostComments { get; set; }
     }
 }
