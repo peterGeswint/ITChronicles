@@ -28,6 +28,12 @@ namespace IT_Chronicles.Controllers
         [HttpPost]
         public  async Task<IActionResult> Add(AddTagRequest addTagRequest)
         {
+            ValidateAddTagRequest(addTagRequest);
+
+            if (ModelState.IsValid == false)
+            {
+                return View();
+            }
             var tag = new Tag
             {
                 Name = addTagRequest.Name,
@@ -41,10 +47,29 @@ namespace IT_Chronicles.Controllers
 
         [HttpGet]
         [ActionName("List")]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List(string? searchQuery, string? sortBy, string? sortDirection, int pageSize = 3, int pageNumber = 1)
         {
+            var totalRecords = await tagRepository.CountAsync();
+            var totalPages = Math.Ceiling((decimal)totalRecords / pageSize);
+
+            if(pageNumber > totalPages)
+            {
+                pageNumber--;
+            }
+
+            if(pageNumber < 1)
+            {
+                pageNumber++;
+            }
+
+            ViewBag.TotalPages = totalPages;
+            ViewBag.PageSize = pageSize;
+            ViewBag.SearchQuery = searchQuery;
+            ViewBag.SortBy = sortBy;
+            ViewBag.SortDirection = sortDirection;
+
             //Tag listed to diplay the data in the database
-            var tags = await tagRepository.GetAllAsync();
+            var tags = await tagRepository.GetAllAsync(searchQuery, sortBy, sortDirection, pageNumber, pageSize);
             return View(tags);
         }
 
@@ -103,6 +128,17 @@ namespace IT_Chronicles.Controllers
             }
             //error
             return RedirectToAction("Edit", new {id = editTagRequest.Id});
+        }
+
+        private void ValidateAddTagRequest(AddTagRequest addTagRequest)
+        {
+            if(addTagRequest.Name != null && addTagRequest.DisplayName != null)
+            {
+                if(addTagRequest.Name == addTagRequest.DisplayName)
+                {
+                    ModelState.AddModelError("DisplayName", "Name cannot be the same as display name");
+                }
+            }
         }
     }
 }

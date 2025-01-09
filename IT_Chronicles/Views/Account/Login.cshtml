@@ -12,18 +12,20 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-6 border-2" style="border-radius: 20px; border-width: 10px;">
 
-                <h1 class="mb-3 h3 mt-5">Login</h1>
+                <h1 class="mb-3 mt-5">Login</h1>
 
                 <form method="post">
 
                     <div class="mb-3">
                         <label class="form-label">Username</label>
-                        <input type="text" id="username" class="form-control text-success" asp-for="UserName"/>
+                        <input type="text" id="username" class="form-control text-success" asp-for="UserName" required/>
+                        <span class="text-ligtht" asp-validation-for="UserName"></span>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input type="password" id="password" class="form-control text-success" asp-for="Password"/>
+                        <input type="password" id="password" class="form-control text-success" asp-for="Password" required minlength="6"/>
+                        <span class="text-light" asp-validation-for="Password"></span>
                     </div>
 
                     <div class="mb-3">

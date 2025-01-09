@@ -58,7 +58,7 @@ namespace IT_Chronicles.Data
                 Id = superAdminId,
             };
 
-            superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(superAdminUser, "Super@123");
+            superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(superAdminUser, "Super@123!");
 
             builder.Entity<IdentityUser>().HasData(superAdminUser);
 

@@ -26,28 +26,33 @@ namespace IT_Chronicles.Controllers
 
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
-            var identityUser = new IdentityUser
+            if (ModelState.IsValid)
             {
-                UserName = registerViewModel.UserName,
-                Email = registerViewModel.Email
-            };
 
-           var identityResult = await userManager.CreateAsync(identityUser, registerViewModel.Password);
-
-            if (identityResult.Succeeded)
-            {
-                // assign user the userRole
-
-              var roleIdentityResult =  await userManager.AddToRoleAsync(identityUser, "user");
-
-                if (roleIdentityResult.Succeeded)
+                var identityUser = new IdentityUser
                 {
-                    //success
-                    return RedirectToAction("Login");
+                    UserName = registerViewModel.UserName,
+                    Email = registerViewModel.Email
+                };
+
+                var identityResult = await userManager.CreateAsync(identityUser, registerViewModel.Password);
+
+                if (identityResult.Succeeded)
+                {
+                    // assign user the userRole
+
+                    var roleIdentityResult = await userManager.AddToRoleAsync(identityUser, "user");
+
+                    if (roleIdentityResult.Succeeded)
+                    {
+                        //success
+                        return RedirectToAction("Login");
+                    }
+
                 }
 
-
             }
+
             //failure
             return View("Register");
 
@@ -67,9 +72,15 @@ namespace IT_Chronicles.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View();
+
+            //}
+
             var signInResult = await signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, false, false);
 
-            if(signInResult != null && signInResult.Succeeded)
+            if (signInResult != null && signInResult.Succeeded)
             {
                 if (!string.IsNullOrWhiteSpace(loginViewModel.ReturnUrl))
                 {
@@ -78,6 +89,7 @@ namespace IT_Chronicles.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
+
 
             return View();
 
