@@ -1,6 +1,7 @@
 ﻿@model IT_Chronicles.Models.ViewModels.LoginViewModel
 
 @{
+    ViewData["Title"] = "Login";
 }
 
 
@@ -28,8 +29,9 @@
                         <span class="text-light" asp-validation-for="Password"></span>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3" styles="justify-content: center;">
                         <button type="submit" class="btn">Login</button>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary me-4">Home</a>
                     </div>
 
                     <input type="hidden" asp-for="ReturnUrl" />
@@ -40,6 +42,55 @@
             </div>
 
         </div>
+
+         <!-- footer
+    ================================================== -->
+    <footer class="s-footer">
+        <div class="row row-y-top">
+
+            <div class="column medium-8 medium-12">
+                <div class="row">
+                    <div class="column medium-7 tab-12 s-footer__block">
+                        <h2 class="h4">Where to Find Us</h2>
+        
+                        <p>
+                        1 Missionvale 1ste Ave  <br>
+                        Mountain View, Port Elizabeth <br>
+                        94043  SA <br>
+                        <a href="tel:197-543-2345">+197 543 2345</a>
+                        </p>
+                    </div>
+        
+                    <div class="column medium-5 tab-12 s-footer__block">
+                        <h2 class="h4">Follow Us</h2 class="h4">
+        
+                        <ul class="s-footer__list">
+                            <li><a href="#0">Facebook</a></li>
+                            <li><a href="#0">Twitter</a></li>
+                            <li><a href="#0">Instagram</a></li>
+                            <li><a href="#0">Dribbble</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column large-4 medium-12 s-footer__block--end">
+                <a href="mailto:#0" class="btn h-full-width">Let's Talk</a>
+
+                <div class="ss-copyright">
+                    <span>Copyright IT Chronicles 2024</span> 
+                    <span>Design and Developed by Peter Geswint </span>
+                </div>
+            </div>
+
+            <div class="ss-go-top">
+                <a class="smoothscroll" title="Back to Top" href="#top">
+                    top
+                </a>
+            </div> <!-- end ss-go-top -->
+
+        </div>
+    </footer>
 
     </div>
 
