@@ -33,9 +33,36 @@ namespace IT_Chronicles.Repositories
             return null;
         }
 
-        public async Task<IEnumerable<BlogPost>> GetAllAsync()
+        public async Task<IEnumerable<BlogPost>> GetAllAsync(string? searchQuery, string? sortBy, string? sortDirection)
         {
-            return await iTChroniclesDbContext.BlogPosts.Include(x => x.Tags).ToListAsync();
+            var query = iTChroniclesDbContext.BlogPosts.Include(x => x.Tags).AsQueryable();
+            
+            //filtering
+            if(string.IsNullOrWhiteSpace(searchQuery) == false)
+            {
+                query = query.Where(x => x.Heading.Contains(searchQuery) || x.PageTitle.Contains(searchQuery));
+            }
+
+            //sorting
+            if(string.IsNullOrWhiteSpace(sortBy) == false)
+            {
+                var isDec = string.Equals(sortDirection, "Desc", StringComparison.OrdinalIgnoreCase);
+
+                if(string.Equals(sortBy, "Heading", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = isDec ? query.OrderByDescending(x => x.Heading) : query.OrderBy(x => x.Heading);
+                }
+
+                if (string.Equals(sortBy, "PageTitle", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = isDec ? query.OrderByDescending(x => x.PageTitle) : query.OrderBy(x => x.PageTitle);
+                }
+
+            }
+
+            //pagination
+
+            return await query.ToListAsync();
         }
 
         public async Task<BlogPost?> GetAsync(Guid id)

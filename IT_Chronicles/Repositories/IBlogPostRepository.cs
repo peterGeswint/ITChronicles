@@ -4,7 +4,7 @@ namespace IT_Chronicles.Repositories
 {
     public interface IBlogPostRepository
     {
-        Task<IEnumerable<BlogPost>> GetAllAsync();
+        Task<IEnumerable<BlogPost>> GetAllAsync(string? searchQuery = null, string? sortBy = null, string? sortDirection = null);
 
         Task<BlogPost?> GetAsync(Guid id);
 

@@ -71,10 +71,15 @@ namespace IT_Chronicles.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> List()
+        [ActionName("List")]
+        public async Task<IActionResult> List(string? searchQuery,string? sortBy, string? sortDirection)
         {
+            ViewBag.SearchQuery = searchQuery;
+            ViewBag.SortBy = sortBy;
+            ViewBag.SortDirection = sortDirection;
             // call repository
-            var blogPost = await blogPostRepository.GetAllAsync();
+            var blogPost = await blogPostRepository.GetAllAsync(searchQuery, sortBy, sortDirection);
+
             return View(blogPost);
         }
 

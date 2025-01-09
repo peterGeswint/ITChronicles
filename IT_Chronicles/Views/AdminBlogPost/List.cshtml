@@ -8,15 +8,46 @@
             <h1>List all Blog Post - Admin Functionality</h1>
         </div>
     </div>
+    <form method="get" asp-controller="AdminBlogPost" asp-action="List" asp-route-searchQuery="">
 
-    <div class="container mb-5">
+        <div class="container mt-5">
+            <div class="col col-md-6 d-flex">
+                <input type="text" class="form-control text-success me-4" name="searchQuery" value="@ViewBag.SearchQuery" />
+                <button type="submit" class="btn btn-warning ms-4">Search</button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <div class="container mb-5 mt-5">
         <table class="table">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Heading</th>
+                    <th>
+                        Heading
+                        <span>
+                            <span>
+                                <a class="btn btn-light" asp-controller="AdminBlogPost" asp-action="List" asp-route-sortBy="Heading"
+                                   asp-route-sortDirection="Asc" asp-route-searchQuery="@ViewBag.SearchQuery">
+                                    <i class="bi bi-arrow-up"></i>
+                                </a>
+                            </span>
+
+                            <span>
+                                <a class="btn btn-light" asp-controller="AdminBlogPost" asp-action="List" asp-route-sortBy="Heading"
+                                   asp-route-sortDirection="Desc" asp-route-searchQuery="@ViewBag.SearchQuery">
+                                    <i class="bi bi-arrow-down"></i>
+                                </a>
+                            </span>
+                        </span>
+
+                    </th>
                     <th>Tags</th>
-                    <td>Actions </td>
+                    <td> </td>
                 </tr>
 
             </thead>
@@ -37,9 +68,10 @@
                         </td>
                         <td><a asp-area="" asp-controller="AdminBlogPost" asp-action="Edit" asp-rout-id="@blogPost.Id">Edit</a></td>
                         <td><a asp-area="" asp-controller="AdminBlogpost" asp-action="Delete" class="me-2"> Delete</a></td>
-                   </tr>
-                   }
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary">Home</a>
 </body>
