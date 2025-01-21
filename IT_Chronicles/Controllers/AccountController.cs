@@ -45,7 +45,7 @@ namespace IT_Chronicles.Controllers
 
                     if (roleIdentityResult.Succeeded)
                     {
-                        //success
+                        TempData["successMessage"] = "Registration successfull !";
                         return RedirectToAction("Login");
                     }
 
@@ -53,7 +53,7 @@ namespace IT_Chronicles.Controllers
 
             }
 
-            //failure
+            TempData["errorMessage"] = "Registration failed !";
             return View("Register");
 
         }
@@ -72,11 +72,6 @@ namespace IT_Chronicles.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View();
-
-            //}
 
             var signInResult = await signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, false, false);
 
