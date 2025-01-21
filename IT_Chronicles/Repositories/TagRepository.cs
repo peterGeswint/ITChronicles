@@ -1,5 +1,6 @@
 ﻿using IT_Chronicles.Data;
 using IT_Chronicles.Models.Domain;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace IT_Chronicles.Repositories

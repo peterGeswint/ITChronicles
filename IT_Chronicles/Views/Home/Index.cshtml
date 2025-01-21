@@ -55,7 +55,7 @@
                           <li><a asp-area="" asp-controller="AdminUsers" asp-action="List" title="Admin">List Users</a></li> 
                     }
                  
-                 <li><a class="smoothscroll" href="#about" title="About">About</a></li>
+                 
                     @if (signInManager.IsSignedIn(User))
                     {
 
@@ -66,6 +66,8 @@
                     }
                     else
                     {
+                         <li><a class="smoothscroll" href="#about" title="About">About</a></li>
+
                           <li><a class="me-4" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
 
                           <li><a class="me-4 " asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>

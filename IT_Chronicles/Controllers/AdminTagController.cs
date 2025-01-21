@@ -41,6 +41,7 @@ namespace IT_Chronicles.Controllers
             };
 
              await tagRepository.AddAsync(tag);
+            TempData["successMessage"] = "Tag created succussfully";
 
             return RedirectToAction("List");
         }
@@ -107,11 +108,11 @@ namespace IT_Chronicles.Controllers
 
             if(updatedTag != null)
             {
-                //success
+                TempData["successMessage"] = "Tag has been updated";
             }
             else
             {
-                //error
+                TempData["errorMessage"] = "Update was not successfull";
             }
 
             return RedirectToAction("Edit", new { id = editTagRequest.Id });
@@ -123,10 +124,10 @@ namespace IT_Chronicles.Controllers
            var deletedTag = await tagRepository.DeleteAsync(editTagRequest.Id);
             if(deletedTag != null)
             {
-                //success
+                TempData["successMessage"] = "Tag was deleted";
                return RedirectToAction("List");
             }
-            //error
+            TempData["errorMassage"] = "Something went wrong";
             return RedirectToAction("Edit", new {id = editTagRequest.Id});
         }
 

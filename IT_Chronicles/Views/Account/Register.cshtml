@@ -34,10 +34,17 @@
                         <span class="text-light" asp-validation-for="Password"></span>
                     </div>
 
-                    <div class="mb-3" style="align-content: center;">
+                    <div class="d-flex" style="justify-content:space-between;">
+                           <div class="mb-3">
                         <button type="submit" class="btn">Register</button>
-                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary me-4">Home</a>
                     </div>
+                    <div class="mb-3">
+                         <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary ">Home</a>
+                    </div>
+
+                    </div>
+
+                 
 
 
                 </form>

@@ -16,7 +16,7 @@
 
         public string UrlHandle { get; set; }
 
-        public DateTime PublishedDate { get; set; }
+        public DateTime PublishedDate { get; set; } = DateTime.Today;
 
         public string Author { get; set; }
 

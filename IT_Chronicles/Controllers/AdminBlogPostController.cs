@@ -67,6 +67,7 @@ namespace IT_Chronicles.Controllers
             }
 
             await blogPostRepository.AddAsync(blogPost);
+            TempData["successMessage"] = "BlogPost was created succesfully";
             return RedirectToAction("List");
         }
 
@@ -162,10 +163,10 @@ namespace IT_Chronicles.Controllers
 
             if(updatedBlog != null)
             {
-                //success redirection.
+                TempData["successMessage"] = "BlogPost Updated successfully";
                 return RedirectToAction("List");
             }
-            //failure redirection.
+            TempData["errorMessage"] = "Something went wrong";
             return RedirectToAction("Edit");
            
         }
@@ -177,10 +178,11 @@ namespace IT_Chronicles.Controllers
            var deletedBlogPost = await blogPostRepository.DeleteAsync(editBlogPostRequest.Id);
             if(deletedBlogPost != null)
             {
-                //success response
+                TempData["successMessage"] = "BlogPost deleted successfully";
                 return RedirectToAction("List");
             }
             //getting the  failure response
+            TempData["errorMessage"] = "Something went wrong";
             return RedirectToAction("Edit", new { id = editBlogPostRequest.Id });
         }
            
