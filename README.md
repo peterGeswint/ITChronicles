@@ -1,1 +1,3 @@
 # ITChronicles
+
+![homepage](itchronicles.png)
